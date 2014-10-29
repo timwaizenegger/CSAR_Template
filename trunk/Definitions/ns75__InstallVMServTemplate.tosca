@@ -51,7 +51,7 @@
                     <tosca:OutputParameter name="selfserviceStatus" type="xsd:string"/>
                     <tosca:OutputParameter name="CorrelationID" type="xsd:string"/>
                 </tosca:OutputParameters>
-                <tosca:PlanModelReference reference="../servicetemplates/http%253A%252F%252Ftypes.opentosca.org/InstallVMServTemplate/plans/InstallVMServTemplateBuildPlan/InstallVMServTemplateBuildPlan.zip"/>
+                <tosca:PlanModelReference reference="../servicetemplates/types.opentosca.org/InstallVMServTemplate/plans/InstallVMServTemplateBuildPlan/InstallVMServTemplateBuildPlan.zip"/>
             </tosca:Plan>
         </tosca:Plans>
     </tosca:ServiceTemplate>
