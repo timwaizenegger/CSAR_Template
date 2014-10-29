@@ -15,7 +15,7 @@
 	<property name="src.dir" value="${ant.file.dir}/trunk" />
     <property name="CSARName" value="InstallVMServTemplate" />
 	<property name="PlanBaseName" value="InstallVMServTemplate" />
-	<property name="PlanDir" value="servicetemplates/http%3A%2F%2Ftypes.opentosca.org/InstallVMServTemplate/plans/" />
+	<property name="PlanDir" value="servicetemplates/types.opentosca.org/InstallVMServTemplate/plans/" />
 	
 
 	<target name="publish"  depends="clean">
