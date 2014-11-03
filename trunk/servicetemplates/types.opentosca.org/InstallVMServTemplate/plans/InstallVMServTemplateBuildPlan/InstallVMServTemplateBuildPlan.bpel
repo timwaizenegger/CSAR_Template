@@ -892,7 +892,7 @@
 				</bpel:to>
 			</bpel:copy>        
             <bpel:copy>
-                <bpel:from><![CDATA[concat("The OpenStack VM has been created with serverId: ", $serverId)]]></bpel:from>
+                <bpel:from><![CDATA[concat("BONE SIMULATION!!! The OpenStack VM has been created with serverId: ", $serverId)]]></bpel:from>
                 <bpel:to part="payload" variable="output">
                		 <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[tns:selfserviceMessage]]></bpel:query>
                 </bpel:to>

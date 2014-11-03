@@ -202,7 +202,7 @@
   </extensions>
   <extensions>
     <extendedObject href="InstallVMServTemplateBuildPlan.bpel#/"/>
-    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ProcessExtension" modificationStamp="1415017132000"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ProcessExtension" modificationStamp="1415018012000"/>
   </extensions>
   <extensions>
     <extendedObject href="InstallVMServTemplateBuildPlan.bpel#//@variables/@children.20"/>
