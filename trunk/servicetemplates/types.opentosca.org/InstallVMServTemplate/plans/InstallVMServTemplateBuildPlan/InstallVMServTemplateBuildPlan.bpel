@@ -898,7 +898,7 @@
                 </bpel:to>
             </bpel:copy>
             <bpel:copy>
-                <bpel:from><![CDATA[concat("The script output is: ", $scriptOutput)]]></bpel:from>
+                <bpel:from><![CDATA[concat("The script output is: ", "null")]]></bpel:from>
                 <bpel:to part="payload" variable="output">
                		 <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[tns:selfservicePolicyMessage]]></bpel:query>
                 </bpel:to>
