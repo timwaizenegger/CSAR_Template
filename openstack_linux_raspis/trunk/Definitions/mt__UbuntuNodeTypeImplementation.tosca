@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tosca:Definitions xmlns:tosca="http://docs.oasis-open.org/tosca/ns/2011/12" xmlns:winery="http://www.opentosca.org/winery/extensions/tosca/2013/02/12" xmlns:ns1="http://www.eclipse.org/winery/model/selfservice" id="winery-defs-for_mt-UbuntuNodeTypeImplementation" targetNamespace="http://www.example.com/tosca/Types/Moodle">
+    <tosca:Import namespace="http://www.example.com/tosca/Types/Moodle" location="../imports/http%253A%252F%252Fwww.w3.org%252F2001%252FXMLSchema/http%253A%252F%252Fwww.example.com%252Ftosca%252FTypes%252FMoodle/MoodleTypes/MoodleTypes.xsd" importType="http://www.w3.org/2001/XMLSchema"/>
+    <tosca:Import namespace="http://www.uni-stuttgart.de/opentosca" location="../imports/http%253A%252F%252Fwww.w3.org%252F2001%252FXMLSchema/http%253A%252F%252Fwww.uni-stuttgart.de%252Fopentosca/WSProperties/WSProperties.xsd" importType="http://www.w3.org/2001/XMLSchema"/>
+    <tosca:Import namespace="http://www.example.com/tosca/Types/Moodle" location="mt__UbuntuNodeTypeImplementation_IA_ArtifactTemplate.tosca" importType="http://docs.oasis-open.org/tosca/ns/2011/12"/>
+    <tosca:Import namespace="http://www.example.com/ToscaTypes" location="extt2__WAR.tosca" importType="http://docs.oasis-open.org/tosca/ns/2011/12"/>
+    <tosca:NodeTypeImplementation xmlns:tbt="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="UbuntuNodeTypeImplementation" targetNamespace="http://www.example.com/tosca/Types/Moodle" nodeType="tbt:OperatingSystem">
+        <tosca:ImplementationArtifacts>
+            <tosca:ImplementationArtifact xmlns:extt2="http://www.example.com/ToscaTypes" xmlns:mt="http://www.example.com/tosca/Types/Moodle" interfaceName="InterfaceUbuntu" artifactType="extt2:WAR" artifactRef="mt:UbuntuNodeTypeImplementation_IA_ArtifactTemplate"/>
+        </tosca:ImplementationArtifacts>
+    </tosca:NodeTypeImplementation>
+</tosca:Definitions>

@@ -1,0 +1,83 @@
+TOSCA-Meta-Version: 1.0
+CSAR-Version: 1.0
+Created-By: Winery 0.1.37-SNAPSHOT
+Entry-Definitions: Definitions/ns17__InstallVMServTemplate.tosca
+
+Name: Definitions/ns17__InstallVMServTemplate.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: Definitions/ns17__connected_to.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: Definitions/ns17__hosted_on.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: Definitions/tbt__OperatingSystem.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: Definitions/ns17__InstallOpenStackVM.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: Definitions/mt__UbuntuNodeTypeImplementation.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: Definitions/tbt__RootNodeType.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: Definitions/ns17__InstallOpenStackVM_impl.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: Definitions/mt__UbuntuNodeTypeImplementation_IA_ArtifactTemplate.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: Definitions/extt2__WAR.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: Definitions/ns17__InstallOpenStackVM_IA.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: imports/http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema/http%3A%2F%2Fdocs.oasis-open.org%2Ftosca%2Fns%2F2011%2F12%2FToscaBaseTypes%2Fpropertiesdefinition%2Fwinery/Properties/Properties.xsd
+Content-Type: text/xml
+
+Name: SELFSERVICE-Metadata/image.jpg
+Content-Type: image/jpeg
+
+Name: SELFSERVICE-Metadata/icon.jpg
+Content-Type: image/jpeg
+
+Name: imports/http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema/http%3A%2F%2Fdocs.oasis-open.org%2Ftosca%2Fns%2F2011%2F12%2FToscaBaseTypes/Artifacts/Artifacts.xsd
+Content-Type: text/xml
+
+Name: imports/http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema/http%3A%2F%2Fdocs.oasis-open.org%2Ftosca%2Fns%2F2011%2F12%2FToscaBaseTypes/TOSCA-v1.0-BaseTypes/TOSCA-v1.0-BaseTypes.xsd
+Content-Type: text/xml
+
+Name: artifacttemplates/http%3A%2F%2Ftypes.opentosca.org/InstallOpenStackVM_IA/files/InstallOpenStackVM_Custom_InstallVM.war
+Content-Type: application/x-tika-java-web-archive
+
+Name: servicetemplates/http%3A%2F%2Ftypes.opentosca.org/InstallVMServTemplate/plans/InstallVMServTemplateBuildPlan/InstallVMServTemplateBuildPlan.zip
+Content-Type: application/zip
+
+Name: imports/http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema/http%3A%2F%2Fwww.uni-stuttgart.de%2Fopentosca/WSProperties/WSProperties.xsd
+Content-Type: text/xml
+
+Name: artifacttemplates/http%3A%2F%2Fwww.example.com%2Ftosca%2FTypes%2FMoodle/UbuntuNodeTypeImplementation_IA_ArtifactTemplate/files/org_opentosca_types_Ubuntu__InterfaceUbuntu.war
+Content-Type: application/x-tika-java-web-archive
+
+Name: SELFSERVICE-Metadata/plan.input.default.xml
+Content-Type: application/xml
+
+Name: nodetypes/http%3A%2F%2Fdocs.oasis-open.org%2Ftosca%2Fns%2F2011%2F12%2FToscaBaseTypes/OperatingSystem/propertiesdefinition/Properties.xsd
+Content-Type: text/xml
+
+Name: SELFSERVICE-Metadata/data.xml
+Content-Type: text/xml
+
+Name: nodetypes/http%3A%2F%2Ftypes.opentosca.org/InstallOpenStackVM/propertiesdefinition/Properties.xsd
+Content-Type: text/xml
+
+Name: imports/http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema/http%3A%2F%2Ftypes.opentosca.org%2Fpropertiesdefinition%2Fwinery/Properties/Properties.xsd
+Content-Type: text/xml
+
+Name: imports/http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema/http%3A%2F%2Fwww.example.com%2Ftosca%2FTypes%2FMoodle/MoodleTypes/MoodleTypes.xsd
+Content-Type: text/xml
+

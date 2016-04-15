@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns1:Application xmlns:tosca="http://docs.oasis-open.org/tosca/ns/2011/12" xmlns:winery="http://www.opentosca.org/winery/extensions/tosca/2013/02/12" xmlns:ns1="http://www.eclipse.org/winery/model/selfservice">
+    <ns1:displayName>OpenStack Template CSAR</ns1:displayName>
+    <ns1:description>sensor and actuator deployment&lt;br&gt;</ns1:description>
+    <ns1:iconUrl>icon_openstack.jpg</ns1:iconUrl>
+    <ns1:imageUrl>image.jpg</ns1:imageUrl>
+    <ns1:options>
+        <ns1:option id="1" name="Default">
+            <ns1:description>Description for Default Deployment</ns1:description>
+            <ns1:iconUrl>icon.jpg</ns1:iconUrl>
+            <ns1:planServiceName>InstallVMServTemplateBuildPlanService</ns1:planServiceName>
+            <ns1:planInputMessageUrl>plan.input.default.xml</ns1:planInputMessageUrl>
+        </ns1:option>
+    </ns1:options>
+</ns1:Application>

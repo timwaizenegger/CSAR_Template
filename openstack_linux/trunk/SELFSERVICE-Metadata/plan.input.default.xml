@@ -1,0 +1,17 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:buil="http://types.opentosca.org/InstallVMServTemplate/BuildPlan">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <buil:InstallVMServTemplateBuildPlanRequest>  
+         <buil:credentials>?</buil:credentials>
+         <buil:endpointsAPI>?</buil:endpointsAPI>
+         <buil:flavorId>?</buil:flavorId>
+         <buil:imageName>?</buil:imageName>
+         <buil:script>?</buil:script>
+         <!-- DONT CHANGE -->
+         <buil:csarName>%CSAR-NAME%</buil:csarName>
+         <buil:containerApi>%CONTAINER-API%</buil:containerApi>
+         <buil:callbackUrl>%CALLBACK-URL%</buil:callbackUrl>
+         <buil:CorrelationID>%CORRELATION-ID%</buil:CorrelationID>
+      </buil:InstallVMServTemplateBuildPlanRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
