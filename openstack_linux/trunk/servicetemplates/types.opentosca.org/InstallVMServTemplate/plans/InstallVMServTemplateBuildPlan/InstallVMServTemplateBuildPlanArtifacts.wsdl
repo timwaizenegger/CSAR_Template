@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions  
+	xmlns:impl="http://siserver.org/schema" 
+	xmlns="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:tns="http://types.opentosca.org/InstallVMServTemplate/BuildPlan" 
+	xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" 
+	xmlns:wsdl="http://ec2vm.aws.ia.opentosca.org" 
+	xmlns:wsdl1="http://ec2linux.aws.ia.opentosca.org" 
+	xmlns:wsdl2="http://siserver.org/wsdl" 
+	xmlns:xsd="http://siserver.org/schema" 
+	xmlns:xsd1="http://www.w3.org/2001/XMLSchema" 
+	name="InstallVMServTemplateBuildPlan" 
+	targetNamespace="http://types.opentosca.org/InstallVMServTemplate/BuildPlan">
+
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	WSDL IMPORTS
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->   	
+	<import location="siservice/invoker.wsdl" namespace="http://siserver.org/wsdl"/>
+	
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	PARTNERLINKTYPE DEFINITION
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->   	
+    <plnk:partnerLinkType name="SIInvokerPLT">
+		<plnk:role name="Requestee" portType="wsdl2:InvokePortType"/>
+		<plnk:role name="Requester" portType="wsdl2:CallbackPortType"/>		
+	</plnk:partnerLinkType>
+	
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	CORRELATION PROPERTIES DEFINITION
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->   	 
+    <vprop:property name="MessageID" type="xsd1:string"/>
+  
+	<vprop:propertyAlias messageType="wsdl2:invokeOperationAsyncMessage" part="invokeOperationAsync" propertyName="tns:MessageID">
+		<vprop:query><![CDATA[/xsd:MessageID]]></vprop:query>
+	</vprop:propertyAlias>
+    
+    <vprop:propertyAlias messageType="wsdl2:invokeResponse" part="invokeResponse" propertyName="tns:MessageID">
+		<vprop:query><![CDATA[/xsd:MessageID]]></vprop:query>
+	</vprop:propertyAlias>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     TYPE DEFINITION - List of services participating in this BPEL process 
+     The default output of the BPEL designer uses strings as input and 
+     output to the BPEL Process. But you can define or import any XML 
+     Schema type and us them as part of the message types.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    		
+    <types>  
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://types.opentosca.org/InstallVMServTemplate/BuildPlan">
+                
+            <element name="InstallVMServTemplateBuildPlanRequest">
+                <complexType>
+                    <sequence>
+                    	<element name="credentials" type="string"/>
+                    	<element name="endpointsAPI" type="string"/>
+                    <!--<element name="keypair" type="string"/>
+                     	<element name="imageId" type="string"/> -->
+                    	<element name="flavorId" type="string"/>
+                   <!-- <element name="minDisk" type="string"/>
+                    	<element name="minRAM" type="string"/> -->
+                     	<element name="imageName" type="string"/>
+                      	<element name="script" type="string"/>
+                    <!--<element name="imageId" type="string"/>-->
+                    	<element name="csarName" type="string"/>
+						<element name="containerApi" type="string"/>
+                    	<element name="callbackUrl" type="string"/>
+						<element name="CorrelationID" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+                  
+            <element name="InstallVMServTemplateBuildPlanResponse">
+                <complexType>
+                    <sequence>
+                    	<element name="selfserviceApplicationUrl" type="string"/>
+						<element name="selfserviceMessage" type="string"/>
+						<element name="selfservicePolicyMessage" type="string"/>
+                    	<element name="selfserviceStatus" type="string"/>
+                    	<element name="CorrelationID" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            
+        </schema>
+    </types>
+  
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     MESSAGE TYPE DEFINITION - Definition of the message types used as 
+     part of the port type defintions
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <message name="InstallVMServTemplateBuildPlanRequestMessage">
+        <part element="tns:InstallVMServTemplateBuildPlanRequest" name="payload"/>
+    </message>
+    
+    <message name="InstallVMServTemplateBuildPlanResponseMessage">
+        <part element="tns:InstallVMServTemplateBuildPlanResponse" name="payload"/>
+    </message>
+
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PORT TYPE DEFINITION - A port type groups a set of operations into
+     a logical service unit.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- portType implemented by the InstallVMServTemplateBuildPlan BPEL process -->
+    <portType name="InstallVMServTemplateBuildPlan">
+        <operation name="initiate">
+            <input message="tns:InstallVMServTemplateBuildPlanRequestMessage"/>
+        </operation>
+    </portType>
+
+    <!-- portType implemented by the requester of MoodleBuildPlan BPEL process 
+         for asynchronous callback purposes
+         -->
+    <portType name="InstallVMServTemplateBuildPlanCallback">
+        <operation name="onResult">
+            <input message="tns:InstallVMServTemplateBuildPlanResponseMessage"/>
+        </operation>
+    </portType>
+
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PARTNER LINK TYPE DEFINITION
+         the MoodleBuildPlan partnerLinkType binds the provider and
+         requester portType into an asynchronous conversation.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <plnk:partnerLinkType name="InstallVMServTemplateBuildPlan">
+        <plnk:role name="InstallVMServTemplateBuildPlanProvider" portType="tns:InstallVMServTemplateBuildPlan"/>
+        <plnk:role name="InstallVMServTemplateBuildPlanRequester" portType="tns:InstallVMServTemplateBuildPlanCallback"/>
+    </plnk:partnerLinkType>   
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     BINDING DEFINITION - Defines the message format and protocol details
+     for a web service.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <binding name="InstallVMServTemplateBuildPlanBinding" type="tns:InstallVMServTemplateBuildPlan">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="initiate">
+            <soap:operation soapAction="http://types.opentosca.org/InstallVMServTemplate/BuildPlan/initiate"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+        </operation>
+    </binding>
+
+    <binding name="InstallVMServTemplateBuildPlanCallbackBinding" type="tns:InstallVMServTemplateBuildPlanCallback">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="onResult">
+            <soap:operation soapAction="http://types.opentosca.org/InstallVMServTemplate/BuildPlan/onResult"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+        </operation>
+    </binding>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     SERVICE DEFINITION - A service groups a set of ports into
+     a service unit.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <service name="InstallVMServTemplateBuildPlanService">
+        <port binding="tns:InstallVMServTemplateBuildPlanBinding" name="InstallVMServTemplateBuildPlanPort">
+    		<soap:address location="http://localhost:8080/InstallVMServTemplateBuildPlan"/>
+        </port>        
+    </service>
+
+    <service name="InstallVMServTemplateBuildPlanSICallbackService">
+        <port name="InstallVMServTemplateBuildPlanSICallbackPort" binding="wsdl2:CallbackBinding">
+      		<soap:address location="http://localhost:9763/services/InstallVMServTemplateBuildPlanSICallbackService/"/>
+    	</port>
+    </service>
+
+    <service name="InstallVMServTemplateBuildPlanServiceCallback">
+        <port binding="tns:InstallVMServTemplateBuildPlanCallbackBinding" name="InstallVMServTemplateBuildPlanPortCallbackPort">
+    		<soap:address location="http://localhost:8080/InstallVMServTemplateBuildPlanCallback"/>
+        </port>
+    </service>
+</definitions>

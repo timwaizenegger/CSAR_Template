@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Dec 10, 2012 5:51:10 PM                                                        
+
+     project    
+     description
+                   
+     Tim.Waizenegger@ipvs.uni-stuttgart.de                                                               
+     ====================================================================== -->
+
+
+<project name="build.csar" default="publish" basedir=".">
+	<dirname file="${ant.file}" property="ant.file.dir" />
+	<property name="export.dir" value="${ant.file.dir}/build" />
+	<property name="src.dir" value="${ant.file.dir}/trunk" />
+    <property name="CSARName" value="InstallVMServTemplate" />
+	<property name="PlanBaseName" value="InstallVMServTemplate" />
+	<property name="PlanDir" value="servicetemplates/types.opentosca.org/InstallVMServTemplate/plans/" />
+	
+
+	<target name="publish"  depends="clean">
+		<mkdir dir="${export.dir}" />
+		<copy todir="${export.dir}/${CSARName}">
+			<fileset dir="${src.dir}">
+				<exclude name="${PlanDir}/**" />
+			</fileset>
+		</copy>
+
+		<zip destfile="${export.dir}/${CSARName}/${PlanDir}/${PlanBaseName}BuildPlan/${PlanBaseName}BuildPlan.zip" basedir="${src.dir}/${PlanDir}/${PlanBaseName}BuildPlan/" />
+		<zip destfile="${export.dir}/${CSARName}.csar" basedir="${export.dir}/${CSARName}" />
+		<delete dir="${export.dir}/${CSARName}" />
+	</target>
+
+
+	<target name="clean">
+		<delete File="${export.dir}/${CSARName}.csar" />
+		<delete dir="${export.dir}/${CSARName}" />
+	</target>
+
+</project>

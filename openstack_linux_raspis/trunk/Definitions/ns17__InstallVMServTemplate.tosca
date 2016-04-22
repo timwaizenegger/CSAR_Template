@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tosca:Definitions xmlns:tosca="http://docs.oasis-open.org/tosca/ns/2011/12" xmlns:winery="http://www.opentosca.org/winery/extensions/tosca/2013/02/12" xmlns:ns1="http://www.eclipse.org/winery/model/selfservice" id="winery-defs-for_ns17-InstallVMServTemplate" targetNamespace="http://types.opentosca.org">
+    <tosca:Import namespace="http://types.opentosca.org" location="ns17__connected_to.tosca" importType="http://docs.oasis-open.org/tosca/ns/2011/12"/>
+    <tosca:Import namespace="http://types.opentosca.org" location="ns17__hosted_on.tosca" importType="http://docs.oasis-open.org/tosca/ns/2011/12"/>
+    <tosca:Import namespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" location="tbt__OperatingSystem.tosca" importType="http://docs.oasis-open.org/tosca/ns/2011/12"/>
+    <tosca:Import namespace="http://types.opentosca.org" location="ns17__InstallOpenStackVM.tosca" importType="http://docs.oasis-open.org/tosca/ns/2011/12"/>
+    <tosca:ServiceTemplate id="InstallVMServTemplate" name="InstallVMServTemplate" targetNamespace="http://types.opentosca.org">
+        <tosca:TopologyTemplate>
+            <tosca:NodeTemplate xmlns:ns17="http://types.opentosca.org" name="InstallOpenStackVMTemplate" id="InstallOpenStackVMTemplate" type="ns17:InstallOpenStackVM" winery:x="608" winery:y="737">
+                <tosca:Properties>
+                    <ns9:Properties xmlns:ns9="http://types.opentosca.org/propertiesdefinition/winery" xmlns="http://types.opentosca.org/propertiesdefinition/winery" xmlns:ty="http://types.opentosca.org">
+                        <credentials>{"auth":{"tenantId":"","passwordCredentials":{"username":"","password":""}}}</credentials>
+                        <endpointsAPI>{"os-identity-api":"http:\/\/129.69.209.127:5000\/v2.0","os-tenantId":""}</endpointsAPI>
+                        <keypair/>
+                        <minDisk/>
+                        <minRAM/>
+                        <flavorId>3</flavorId>
+                        <imageId/>
+                        <imageName>ubuntu-12.04-server-cloudimg-amd64</imageName>
+                        <floatingIp/>
+                        <serverId/>
+                        <privKey/>
+			</ns9:Properties>
+                </tosca:Properties>
+            </tosca:NodeTemplate>
+            <tosca:NodeTemplate xmlns:tbt="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="InstallMosquitto" id="LinuxOperatingSystem" type="tbt:OperatingSystem" winery:x="608" winery:y="288">
+                <tosca:Properties>
+                    <ns89:Properties xmlns:ns89="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery" xmlns:ty="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes">
+                        <hostname/>
+                        <sshUser>ubuntu</sshUser>
+                        <sshKey/>
+                        <script>sudo apt-get install -y python-software-properties; sudo apt-add-repository -y ppa:mosquitto-dev/mosquitto-ppa; sudo apt-get update; sudo apt-get install -y mosquitto mosquitto-clients python-mosquitto; sudo mosquitto;</script>
+			</ns89:Properties>
+                </tosca:Properties>
+            </tosca:NodeTemplate>
+            <tosca:NodeTemplate xmlns:tbt="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="Raspi_1" id="OperatingSystem" type="tbt:OperatingSystem" winery:x="295" winery:y="159">
+                <tosca:Properties>
+                    <ns89:Properties xmlns:ns89="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery" xmlns:ty="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes">
+                        <hostname></hostname>
+                        <sshUser>pi</sshUser>
+                        <sshKey></sshKey>
+                        <script>sudo apt-get -y install python-pip; sudo pip install paho-mqtt;</script>
+			</ns89:Properties>
+                </tosca:Properties>
+            </tosca:NodeTemplate>
+            <tosca:NodeTemplate xmlns:tbt="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="ActuatorAdapter" id="OperatingSystem_2" type="tbt:OperatingSystem" winery:x="10" winery:y="356">
+                <tosca:Properties>
+                    <ns89:Properties xmlns:ns89="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery" xmlns:ty="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes">
+                        <hostname></hostname>
+                        <sshUser/>
+                        <sshKey/>
+                        <script>sudo nohup python ./actuator_adapter.py $SERVER_IP &amp; sleep 1;</script>
+			</ns89:Properties>
+                </tosca:Properties>
+            </tosca:NodeTemplate>
+            <tosca:NodeTemplate xmlns:tbt="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="Raspi_2" id="OperatingSystem_3" type="tbt:OperatingSystem" winery:x="937" winery:y="159">
+                <tosca:Properties>
+                    <ns89:Properties xmlns:ns89="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery" xmlns:ty="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes">
+                        <hostname></hostname>
+                        <sshUser>pi</sshUser>
+                        <sshKey></sshKey>
+                        <script>sudo apt-get -y install python-pip; sudo pip install paho-mqtt;</script>
+			</ns89:Properties>
+                </tosca:Properties>
+            </tosca:NodeTemplate>
+            <tosca:NodeTemplate xmlns:tbt="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="SensorAdapter" id="OperatingSystem_4" type="tbt:OperatingSystem" winery:x="1252" winery:y="358">
+                <tosca:Properties>
+                    <ns89:Properties xmlns:ns89="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery" xmlns:ty="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes">
+                        <hostname></hostname>
+                        <sshUser/>
+                        <sshKey/>
+                        <script>sudo nohup python ./adapter.py $SERVER_IP 17 18 &amp; sleep 1;</script>
+			</ns89:Properties>
+                </tosca:Properties>
+            </tosca:NodeTemplate>
+            <tosca:RelationshipTemplate xmlns:ns17="http://types.opentosca.org" name="con_21" id="con_21" type="ns17:hosted_on">
+                <tosca:SourceElement ref="LinuxOperatingSystem"/>
+                <tosca:TargetElement ref="InstallOpenStackVMTemplate"/>
+            </tosca:RelationshipTemplate>
+            <tosca:RelationshipTemplate xmlns:ns17="http://types.opentosca.org" name="con_35" id="con_35" type="ns17:connected_to">
+                <tosca:SourceElement ref="OperatingSystem"/>
+                <tosca:TargetElement ref="LinuxOperatingSystem"/>
+            </tosca:RelationshipTemplate>
+            <tosca:RelationshipTemplate xmlns:ns17="http://types.opentosca.org" name="con_49" id="con_49" type="ns17:hosted_on">
+                <tosca:SourceElement ref="OperatingSystem_2"/>
+                <tosca:TargetElement ref="OperatingSystem"/>
+            </tosca:RelationshipTemplate>
+            <tosca:RelationshipTemplate xmlns:ns17="http://types.opentosca.org" name="con_61" id="con_61" type="ns17:connected_to">
+                <tosca:SourceElement ref="OperatingSystem_3"/>
+                <tosca:TargetElement ref="LinuxOperatingSystem"/>
+            </tosca:RelationshipTemplate>
+            <tosca:RelationshipTemplate xmlns:ns17="http://types.opentosca.org" name="con_82" id="con_82" type="ns17:hosted_on">
+                <tosca:SourceElement ref="OperatingSystem_4"/>
+                <tosca:TargetElement ref="OperatingSystem_3"/>
+            </tosca:RelationshipTemplate>
+        </tosca:TopologyTemplate>
+        <tosca:Plans>
+            <tosca:Plan id="InstallVMServTemplateBuildPlan" name="InstallVMServTemplateBuildPlan" planType="http://docs.oasis-open.org/tosca/ns/2011/12/PlanTypes/BuildPlan" planLanguage="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                <tosca:PlanModelReference reference="../servicetemplates/http%253A%252F%252Ftypes.opentosca.org/InstallVMServTemplate/plans/InstallVMServTemplateBuildPlan/InstallVMServTemplateBuildPlan.zip"/>
+            </tosca:Plan>
+        </tosca:Plans>
+    </tosca:ServiceTemplate>
+</tosca:Definitions>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tosca:Definitions xmlns:tosca="http://docs.oasis-open.org/tosca/ns/2011/12" xmlns:winery="http://www.opentosca.org/winery/extensions/tosca/2013/02/12" xmlns:ns1="http://www.eclipse.org/winery/model/selfservice" id="winery-defs-for_ns17-InstallOpenStackVM_impl" targetNamespace="http://types.opentosca.org">
+    <tosca:Import namespace="http://www.example.com/ToscaTypes" location="extt2__WAR.tosca" importType="http://docs.oasis-open.org/tosca/ns/2011/12"/>
+    <tosca:Import namespace="http://types.opentosca.org" location="ns17__InstallOpenStackVM_IA.tosca" importType="http://docs.oasis-open.org/tosca/ns/2011/12"/>
+    <tosca:NodeTypeImplementation xmlns:ns17="http://types.opentosca.org" name="InstallOpenStackVM_impl" targetNamespace="http://types.opentosca.org" nodeType="ns17:InstallOpenStackVM">
+        <tosca:ImplementationArtifacts>
+            <tosca:ImplementationArtifact xmlns:extt2="http://www.example.com/ToscaTypes" name="InstallOpenStackVM_IA" interfaceName="Custom_InstallVM" artifactType="extt2:WAR" artifactRef="ns17:InstallOpenStackVM_IA"/>
+        </tosca:ImplementationArtifacts>
+    </tosca:NodeTypeImplementation>
+</tosca:Definitions>
