@@ -14,3 +14,19 @@ CSAR_Template
 * It contains self-service data and can be used from the self-service portal Vinothek
 
 * It contains an ANT script for re-packaging the CSAR file after manual extraction/modification
+
+# Syntax for IA input:
+
+## credentials:
+
+{"auth":{"tenantId":"4114e1b404404565ac2ccbcc76b8078e","passwordCredentials":{"username":"username","password":"password"}}}
+
+
+## endpoints
+{"os-identity-api":"http:\/\/129.69.209.131:5000\/v2.0","os-tenantId":"4114e1b404404565ac2ccbcc76b8078e"}
+
+flovorid:
+3
+
+imagename:
+ubuntu-14.04-trusty-server-cloudimg
